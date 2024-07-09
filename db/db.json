@@ -1,0 +1,34 @@
+{
+    "student":[
+       {
+        "rollno":121,
+        "name":"Sakshi",
+        "city":"Bhopal",
+        "fees":34000
+       },
+       {
+        "rollno":122,
+        "name":"Sakshi",
+        "city":"Bhopal",
+        "fees":34000
+       },
+       {
+        "rollno":123,
+        "name":"Sakshi",
+        "city":"Bhopal",
+        "fees":34000
+       },
+       {
+        "rollno":124,
+        "name":"Sakshi",
+        "city":"Bhopal",
+        "fees":34000
+       },
+       {
+        "rollno":125,
+        "name":"Sakshi",
+        "city":"Bhopal",
+        "fees":34000
+       }
+    ]
+}

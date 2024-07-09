@@ -1,48 +1,55 @@
+// ============json server display data==========================================================================
 
 
-// this is the exapmple of useeffect//
-
-
-// import { useEffect, useState } from "react";
-// const App=()=>{
-//   const[cnt,setCnt]=useState(0);
-// useEffect(()=>{
-//   setTimeout(()=>{
-//     setCnt(cnt+1);
-//   },5000)
-// },[])
-// return(
-//   <>
-//   <h1> this is there method of use effect {cnt}</h1>
-//   </>
-// )
-// }
-// export default App;
-
-
-
-
-//this is the method  of use effect and the use state effect //
-
+import { useState,useEffect } from "react";
+import axios from "axios";
+import Table from 'react-bootstrap/Table';
 const App=()=>{
- const[cnt,setCnt]=useState(0)
- const[multi,setMulti]=useState(2)
+  const [mydata,setMydata]=useState([]);
+  const loadData=()=>{
+    let api="http://localhost:3000/student";
+    axios.get(api).then((res)=>{
+      console.log(res.data);
+      setMydata(res.data);
+    });
+  }
+  useEffect(()=>{
+    loadData()
+  },[])
 
+  const ans=mydata.map((key)=>{
+    return(
+      <>
+      <tr>
+        <td>{key.rollno}</td>
+        <td>{key.name}</td>
+        <td>{key.city}</td>
+        <td>{key.fees}</td>
 
-useEffect(()=>{
-  setMulti(cnt*2)
-},[cnt])
- return(
-  <>
- <h1> this is the useeffect method {cnt}</h1>
- <h1> this is the multiplication {multi}</h1>
- <button onClick={()=>{setCnt(cnt+1)}}>CLICK HERE</button>
-  </>
- )
+      </tr>
+      </>
+    )
+  });
+
+  return(
+    <>
+    <h1>Welcome to my app</h1>
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Rollno</th>
+          <th> Name</th>
+          <th>City</th>
+          <th>Fees</th>
+        </tr>
+      </thead>
+      <tbody>
+        {ans}
+      </tbody>
+      </Table>
+    </>
+  )
 }
-
 export default App;
-
-
 
 
