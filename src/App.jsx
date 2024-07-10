@@ -1,54 +1,30 @@
-// ============json server display data==========================================================================
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import Layout from "./Layout";
+import Home from "./pages/Home";
+import Insert from "./pages/Insert";
+import Display from "./pages/Display";
+import Search from "./pages/Search";
+import Update from "./pages/Update";
+import Contact from "./pages/Contact";
 
-
-import { useState,useEffect } from "react";
-import axios from "axios";
-import Table from 'react-bootstrap/Table';
 const App=()=>{
-  const [mydata,setMydata]=useState([]);
-  const loadData=()=>{
-    let api="http://localhost:3000/student";
-    axios.get(api).then((res)=>{
-      console.log(res.data);
-      setMydata(res.data);
-    });
-  }
-  useEffect(()=>{
-    loadData()
-  },[])
-
-  const ans=mydata.map((key)=>{
     return(
-      <>
-      <tr>
-        <td>{key.rollno}</td>
-        <td>{key.name}</td>
-        <td>{key.city}</td>
-        <td>{key.fees}</td>
-
-      </tr>
-      </>
+        <>
+        <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Layout/>}>
+            <Route index element={<Home/>}/>
+            <Route path="home" element={<Home/>}/>
+            <Route path="insert" element={<Insert/>}/>
+            <Route path="display" element={<Display/>}/>
+            <Route path="search" element={<Search/>}/>
+            <Route path="update" element={<Update/>}/>
+            <Route path="contact" element={<Contact/>}/>
+            </Route>
+        </Routes>
+        </BrowserRouter>
+        </>
     )
-  });
-
-  return(
-    <>
-    <h1>Welcome to my app</h1>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Rollno</th>
-          <th> Name</th>
-          <th>City</th>
-          <th>Fees</th>
-        </tr>
-      </thead>
-      <tbody>
-        {ans}
-      </tbody>
-      </Table>
-    </>
-  )
 }
 export default App;
 
