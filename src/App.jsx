@@ -1,31 +1,53 @@
-import { BrowserRouter,Routes,Route } from "react-router-dom";
-import Layout from "./Layout";
-import Home from "./pages/Home";
-import Insert from "./pages/Insert";
-import Display from "./pages/Display";
-import Search from "./pages/Search";
-import Update from "./pages/Update";
-import Contact from "./pages/Contact";
+// import { BrowserRouter,Routes,Route } from "react-router-dom";
+// import Layout from "./Layout";
+// import Home from "./pages/Home";
+// import Insert from "./pages/Insert";
+// import Display from "./pages/Display";
+// import Search from "./pages/Search";
+// import Update from "./pages/Update";
+// import Contact from "./pages/Contact";
 
+// const App=()=>{
+//     return(
+//         <>
+//         <BrowserRouter>
+//         <Routes>
+//             <Route path="/" element={<Layout/>}>
+//             <Route index element={<Home/>}/>
+//             <Route path="home" element={<Home/>}/>
+//             <Route path="insert" element={<Insert/>}/>
+//             <Route path="display" element={<Display/>}/>
+//             <Route path="search" element={<Search/>}/>
+//             <Route path="update" element={<Update/>}/>
+//             <Route path="contact" element={<Contact/>}/>
+//             </Route>
+//         </Routes>
+//         </BrowserRouter>
+//         </>
+//     )
+// }
+// export default App;
+
+
+
+
+import { useState } from "react";
 const App=()=>{
-    return(
-        <>
-        <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<Layout/>}>
-            <Route index element={<Home/>}/>
-            <Route path="home" element={<Home/>}/>
-            <Route path="insert" element={<Insert/>}/>
-            <Route path="display" element={<Display/>}/>
-            <Route path="search" element={<Search/>}/>
-            <Route path="update" element={<Update/>}/>
-            <Route path="contact" element={<Contact/>}/>
-            </Route>
-        </Routes>
-        </BrowserRouter>
-        </>
-    )
+  const[name,setName]=useState("");
+  const [city,setCity]=useState("");
+  const submitHandle=()=>{
+    let inputval={name:name , city:city}
+    console.log(inputval);
+  }
+  return(
+    <>
+    <h1>Application Form</h1>
+    Enter Name: <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}}/>
+    <br/>
+    Enter City: <input type="text" value={city} onChange={(e)=>{setCity(e.target.value)}}/>
+    <br/>
+    <button onClick={submitHandle}>Data save!!</button>
+    </>
+  )
 }
 export default App;
-
-
