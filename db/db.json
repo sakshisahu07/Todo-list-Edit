@@ -1,39 +1,37 @@
 {
-    "student":[
-       {
-        "id":1,
-        "rollno":121,
-        "name":"Sakshi",
-        "city":"Bhopal",
-        "fees":34000
-       },
-       {
-        "id":2,
-        "rollno":122,
-        "name":"Sakshi",
-        "city":"Bhopal",
-        "fees":34000
-       },
-       {
-        "id":3,
-        "rollno":123,
-        "name":"Sakshi",
-        "city":"Bhopal",
-        "fees":34000
-       },
-       {
-        "id":4,
-        "rollno":124,
-        "name":"Sakshi",
-        "city":"Bhopal",
-        "fees":34000
-       },
-       {
-        "id":5,
-        "rollno":125,
-        "name":"Sakshi",
-        "city":"Bhopal",
-        "fees":34000
-       }
-    ]
+  "student": [
+    {
+      "rollno": 121,
+      "name": "Sakshi",
+      "city": "Bhopal",
+      "fees": 30000
+    },
+    {
+      "rollno": 121,
+      "name": "Sakshi",
+      "city": "Bhopal",
+      "fees": 30000
+    },
+    {
+      "rollno": 121,
+      "name": "Sakshi",
+      "city": "Bhopal",
+      "fees": 30000
+    },
+    {
+      "rollno": 121,
+      "name": "Sakshi",
+      "city": "Bhopal",
+      "fees": 30000
+    },
+    {
+      "rollno": 121,
+      "name": "Sakshi",
+      "city": "Bhopal",
+      "fees": 30000
+    },
+    {
+      "id": "b2c2"
+    }
+  ]
 }
