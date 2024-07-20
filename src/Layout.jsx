@@ -1,23 +1,31 @@
-import { Link ,Outlet} from "react-router-dom";
 
-
-
+import { Link,Outlet } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 const Layout=()=>{
-    const myval=800
-    return(
+  return(
+    <>
+     <Navbar bg="primary" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="home">Home |</Nav.Link>
+            <Nav.Link as={Link} to="about">About |</Nav.Link>
+            <Nav.Link as={Link} to="placement">Placement |</Nav.Link>
+            <Nav.Link as={Link} to="gallery">Gallery |</Nav.Link>
+            <Nav.Link as={Link} to="contact">Contact Us</Nav.Link>
 
-      <>
-      <Link to="home">Home</Link>
-      <Link to="about/500">About</Link>
-      <Link to={"contact/"+myval}>Contact</Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <hr size="4" color='red'/>
 
-        <hr size="4" color="red"/>
+      <Outlet/>
 
-        <Outlet/>
-
-        <hr size="4" color="red"/>
-        www.mycompany.com
-      </>
-    )
-  }
-  export default Layout;
+      <hr size="4" color='red'/>
+      www.myuniversity.com
+    </>
+  )
+}
+export default Layout;
