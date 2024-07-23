@@ -1,17 +1,35 @@
-import { useState } from "react";
-import Cybrom from "./Cybrom";
-import { createContext } from "react";
-const myContext=createContext();
-const App=()=>{
-  const[user,setUser]=useState("Sakshi")
-  return(
+
+// import Bhopal from "./Bhopal";
+// import { myContext } from "./CourseContext";
+// import { useContext } from "react";
+
+// const App=()=>{
+//   const [course,setCourse]=useContext(myContext);
+//   return(
+//     <>
+//     <h1>Welcome to Cybrom Technology pvt ltd:{course}</h1>
+//     <button onClick={()=>{setCourse("PGDCA")}}>Click here</button>
+//     <Bhopal/>
+//     </>
+//   )
+// }
+// export default App;
+
+import React, { useContext } from "react";  // Import React and useContext
+import Bhopal from "./Bhopal";  // Import your component Bhopal
+import { myContext } from "./CourseContext";  // Import your context
+// Make sure myContext is properly defined and exported from CourseContext
+
+const App = () => {
+  const [course, setCourse] = useContext(myContext);  // useContext hook to consume context
+  
+  return (
     <>
-    <h1>Welcome to bhopal:{user}</h1>
-    <myContext.Provider value={{user}}>
-      <Cybrom/>
-    </myContext.Provider>
+      <h1>Welcome to Cybrom Technology Pvt Ltd: {course}</h1>
+      <button onClick={() => { setCourse("PGDCA") }}>Click here</button>
+      <Bhopal />  {/* Render your Bhopal component */}
     </>
-  )
-}
+  );
+};
+
 export default App;
-export {myContext}
