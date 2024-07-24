@@ -1,35 +1,18 @@
 
-// import Bhopal from "./Bhopal";
-// import { myContext } from "./CourseContext";
-// import { useContext } from "react";
 
-// const App=()=>{
-//   const [course,setCourse]=useContext(myContext);
-//   return(
-//     <>
-//     <h1>Welcome to Cybrom Technology pvt ltd:{course}</h1>
-//     <button onClick={()=>{setCourse("PGDCA")}}>Click here</button>
-//     <Bhopal/>
-//     </>
-//   )
-// }
-// export default App;
 
-import React, { useContext } from "react";  // Import React and useContext
-import Bhopal from "./Bhopal";  // Import your component Bhopal
-import { myContext } from "./CourseContext";  // Import your context
-// Make sure myContext is properly defined and exported from CourseContext
-
-const App = () => {
-  const [course, setCourse] = useContext(myContext);  // useContext hook to consume context
-  
-  return (
+import { useContext, useState } from "react";
+import { mybgContext } from "./ColorContext";
+const App=()=>{
+  const[txtval,setTxtval]=useState("");
+  const{color,setColor}=useContext(mybgContext);
+  return(
     <>
-      <h1>Welcome to Cybrom Technology Pvt Ltd: {course}</h1>
-      <button onClick={() => { setCourse("PGDCA") }}>Click here</button>
-      <Bhopal />  {/* Render your Bhopal component */}
+    <h1>helloooo! My BGColor Appp!</h1>
+    Enter Color:<input type="text" value={txtval} onChange={(e)=>{setTxtval(e.target.value)}}/>
+    <button onClick={()=>{setColor(txtval)}}>Change Color</button><br/><br/>
+    <div style={{width:"400px",height:"300px",border:"2px solid grey", backgroundColor:color}}></div>
     </>
-  );
-};
-
+  )
+}
 export default App;
