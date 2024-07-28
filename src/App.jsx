@@ -1,25 +1,16 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./Layout";
-import Home from "./components/Home";
-import Registration from "./components/Registration";
-import Login from "./components/Login";
 
+import { useSelector,useDispatch } from "react-redux";
+import { increment,decrement } from "./CounterSlice";
 
 const App=()=>{
+  const count=useSelector((state)=>state.mycounter.cnt);
+  const dispatch= useDispatch();
   return(
     <>
-    <h1>Welcome to my App</h1>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-        <Route index element={<Home/>}/>
-        <Route path="home" element={<Home/>}/>
-        <Route path="registration" element={<Registration/>}/>
-        <Route path="login" element={<Login/>}/>
-        </Route>
-
-      </Routes>
-    </BrowserRouter>
+    <h1>Welcome to Counter App</h1>
+    <button onClick={()=>{dispatch(increment())}}>Increment</button>
+    <h1>{count}</h1>
+    <button onClick={()=>{dispatch(decrement())}}>Decrement</button>
     </>
   )
 }
