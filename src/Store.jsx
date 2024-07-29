@@ -1,12 +1,11 @@
 
 
-
 import { configureStore } from "@reduxjs/toolkit";
-import myReducer from "./CounterSlice";
+import myans from "./CounterSlice"
 
 const store=configureStore({
     reducer:{
-        mycounter:myReducer,
+        mycounter:myans
     }
 })
 export default store;
