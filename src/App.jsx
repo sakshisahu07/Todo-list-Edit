@@ -1,17 +1,18 @@
 
-import { useSelector,useDispatch } from "react-redux";
-import { myinc,mydec } from "./CounterSlice";
 
-
+import { useState } from "react";
+import { changeColor } from "./ColorSlice";
+import { useDispatch, useSelector } from "react-redux";
 const App=()=>{
-  const counter=useSelector((state)=>state.mycounter.cnt);
-  const mydis= useDispatch();
+  const myclr=useSelector((state)=>state.mycolor.bgcolor)
+  const mydis=useDispatch();
+  const[clr,setClr]=useState("")
   return(
     <>
-    <h1>Welcome to Counter App</h1>
-    <button onClick={()=>{mydis(myinc())}}>Increment</button>
-    <h1>{counter}</h1>
-    <button onClick={()=>{mydis(mydec())}}>Decrement</button>
+    <h1>Redux Toolkit</h1>
+    Enter Your Color:<input type="text" value={clr} onChange={(e)=>{setClr(e.target.value)}}/>
+    <button onClick={()=>{mydis(changeColor(clr))}}>Change Color</button>
+    <div style={{width:"500px",height:"300px",backgroundColor:myclr}}></div>
     </>
   )
 }

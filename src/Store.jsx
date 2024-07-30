@@ -1,11 +1,12 @@
 
 
 import { configureStore } from "@reduxjs/toolkit";
-import myans from "./CounterSlice"
+import myreducer from "./ColorSlice"
 
 const store=configureStore({
     reducer:{
-        mycounter:myans
+        mycolor:myreducer,
     }
 })
 export default store;
+
