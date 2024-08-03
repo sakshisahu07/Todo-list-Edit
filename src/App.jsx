@@ -8,6 +8,9 @@ const App=()=>{
     const taskAdd=()=>{
         mydis(addTask({id: Date.now(),task:val}))
     }
+    const deltask=()=>{
+        mydis(deltask({id: Date.now(),task:val}))
+    }
     let sno=0
     const ans=mytask.map((key)=>{
         sno++;
@@ -16,6 +19,7 @@ const App=()=>{
             <tr>
                 <td>{sno}</td>
                 <td>{key.task}</td>
+                <button onClick={deltask}>Delete</button>
             </tr>
             </>
         )
@@ -26,6 +30,7 @@ const App=()=>{
         Enter Task:
         <input type="text" value={val} onChange={(e)=>{setVal(e.target.value)}}/>
         <button onClick={taskAdd}>Add</button>
+       
         <hr size="4" color="blue"/>
         <table>
             <tr>
@@ -38,3 +43,5 @@ const App=()=>{
     )
 }
 export default App;
+
+

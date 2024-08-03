@@ -7,8 +7,12 @@ const todoSlice=createSlice({
     reducers:{
         addTask:(state,actions)=>{
             state.task.push(actions.payload);
+        },
+        delrec:(state,actions)=>{
+            state.task(actions.payload)
         }
     }
 })
 export default todoSlice.reducer;
-export const {addTask}=todoSlice.actions;
+export const {addTask,delrec}=todoSlice.actions;
+
