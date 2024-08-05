@@ -8,11 +8,19 @@ const todoSlice=createSlice({
         addTask:(state,actions)=>{
             state.task.push(actions.payload);
         },
-        delrec:(state,actions)=>{
-            state.task(actions.payload)
+        deltask:(state,actions)=>{
+            state.task=state.task.filter(item=>item.id!=actions.payload)
+        },
+        compTask:(state,actions)=>{
+            for(var i=0;i<state.task.length;i++){
+                if(state.task[i].id==actions.payload)
+                {
+                    state.task[i].status="complete";
+                }
+            }
         }
     }
 })
 export default todoSlice.reducer;
-export const {addTask,delrec}=todoSlice.actions;
+export const {addTask,deltask,compTask}=todoSlice.actions;
 

@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { addTask } from "./todoSlice";
+import { addTask,compTask,deltask } from "./todoSlice";
 const App=()=>{
-    const[val,setVal]=useState("");
     const mytask=useSelector((state)=>state.todolist.task);
-    const mydis=useDispatch();
+    const[val,setVal]=useState("");
+    const dispatch=useDispatch();
     const taskAdd=()=>{
-        mydis(addTask({id: Date.now(),task:val}))
+        dispatch(addTask({id: Date.now(),task:val,status:"uncomplete"}));
+        setVal("")
     }
-    const deltask=()=>{
-        mydis(deltask({id: Date.now(),task:val}))
+    const recdel=(id)=>{
+       dispatch(deltask(id))
+    }
+    const recComp=(id)=>{
+        dispatch(compTask(id))
     }
     let sno=0
     const ans=mytask.map((key)=>{
@@ -18,8 +22,11 @@ const App=()=>{
             <>
             <tr>
                 <td>{sno}</td>
-                <td>{key.task}</td>
-                <button onClick={deltask}>Delete</button>
+                <td>{key.status=="complete"? key.task}<span style={{color:"red",textDecoration:"line through"}}></span></td>
+               <td> <button onClick={()=>{recdel(key.id)}}>Delete</button></td>
+               <td>
+                <button onClick={()=>{recComp(key.id)}}>Complete Task</button>
+               </td>
             </tr>
             </>
         )
@@ -32,7 +39,7 @@ const App=()=>{
         <button onClick={taskAdd}>Add</button>
        
         <hr size="4" color="blue"/>
-        <table>
+        <table border="1" width="400">
             <tr>
                 <th>Sno</th>
                 <th>Task</th>
