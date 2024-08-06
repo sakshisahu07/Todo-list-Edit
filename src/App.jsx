@@ -1,31 +1,56 @@
-import { useState } from "react";
+
 import { useSelector,useDispatch } from "react-redux";
-import { addTask,compTask,deltask } from "./todoSlice";
+import { addTask,taskComplete,delTask,taskUncomp,editSave} from "./todoSlice";
+import { useState } from "react";
 const App=()=>{
-    const mytask=useSelector((state)=>state.todolist.task);
+    const mywork=useSelector((state)=>state.todo.task);
     const[val,setVal]=useState("");
+    const [mybtn,setMybtn]=useState(true);
+    const [edtID,setEdtID]=useState("");
+
     const dispatch=useDispatch();
-    const taskAdd=()=>{
-        dispatch(addTask({id: Date.now(),task:val,status:"uncomplete"}));
+    console.log(mywork)
+    const addmyTask=()=>{
+        dispatch(addTask({id: Date.now(),work:val,complete:false}));
         setVal("")
     }
-    const recdel=(id)=>{
-       dispatch(deltask(id))
+    const recDel=(id)=>{
+       dispatch(delTask(id))
     }
-    const recComp=(id)=>{
-        dispatch(compTask(id))
+    const workComp=(id)=>{
+        dispatch(taskComplete(id))
+    }
+    const workUncomp=(id)=>{
+        dispatch(taskUncomp(id));
+    }
+    const workEdit=(id,work)=>{
+        setVal(work)
+        setMybtn(false)
+        setEdtID(id)
+    }
+    const editdataSave=(myid,mywork)=>{
+        dispatch(editSave({id:myid, work:mywork}))
+        setMybtn(true);
+        setVal("")
     }
     let sno=0
-    const ans=mytask.map((key)=>{
+    const ans=mywork.map((key)=>{
         sno++;
         return(
             <>
             <tr>
                 <td>{sno}</td>
-                <td>{key.status=="complete"? key.task}<span style={{color:"red",textDecoration:"line through"}}></span></td>
-               <td> <button onClick={()=>{recdel(key.id)}}>Delete</button></td>
+                <td>{key.complete? <span style={{color:"red",textDecoration:"line through"}}>
+                    {key.work}</span>:key.work}</td>
+               <td> <button onClick={()=>{recDel(key.id)}}>Delete</button></td>
                <td>
-                <button onClick={()=>{recComp(key.id)}}>Complete Task</button>
+                <button onClick={()=>{workComp(key.id)}}>Complete Task</button>
+               </td>
+               <td>
+                <button onClick={()=>{workUncomp(key.id)}}>UnComplete Task</button>
+               </td>
+               <td>
+                <button onClick={()=>{workEdit(key.id,key.work)}}>Edit</button>
                </td>
             </tr>
             </>
@@ -36,13 +61,20 @@ const App=()=>{
         <h1>To Do App</h1>
         Enter Task:
         <input type="text" value={val} onChange={(e)=>{setVal(e.target.value)}}/>
-        <button onClick={taskAdd}>Add</button>
+        {mybtn? (<button onClick={addmyTask}>
+            Add
+            </button>):(
+                <button onClick={()=>{editdataSave(edtID,val)}}>Edit Save</button>
+            )}
+        
        
         <hr size="4" color="blue"/>
         <table border="1" width="400">
             <tr>
                 <th>Sno</th>
-                <th>Task</th>
+                <th>Your Task</th>
+                <th></th>
+                <th></th>
             </tr>
             {ans}
         </table>
